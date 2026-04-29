@@ -2,236 +2,316 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Khondoker Eftakhar Jubayer | Software Engineer</title>
+<title>Khondoker Eftakhar Jubayer | Software Engineer | Laravel, ERP & SaaS</title>
 
-<!-- SEO -->
-<meta name="description" content="Portfolio of Jubayer - Software Engineer specializing in Laravel, ERP, SaaS, and scalable backend systems.">
-<meta name="keywords" content="Laravel Developer, PHP Engineer, ERP Developer, SaaS, Backend Engineer, Jubayer">
-<meta name="author" content="Khondoker Eftakhar Jubayer">
+<!-- Primary SEO -->
+<meta name="description" content="Official portfolio of Khondoker Eftakhar Jubayer - backend-focused software engineer specializing in Laravel, ERP, SaaS, API engineering, performance optimization, and scalable systems." />
+<meta name="keywords" content="Khondoker Eftakhar Jubayer, Jubayer, Laravel Developer, PHP Engineer, ERP Developer, SaaS Engineer, Backend Engineer, API Developer, Bangladesh Software Engineer" />
+<meta name="author" content="Khondoker Eftakhar Jubayer" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://kejubayer.github.io/" />
 
 <!-- Open Graph -->
-<meta property="og:title" content="Jubayer - Software Engineer Portfolio">
-<meta property="og:description" content="Laravel, ERP, SaaS & Backend Engineering Portfolio">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://via.placeholder.com/1200x630">
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Khondoker Eftakhar Jubayer | Software Engineer" />
+<meta property="og:description" content="Laravel, ERP, SaaS and backend engineering portfolio with live GitHub repositories and package details." />
+<meta property="og:url" content="https://kejubayer.github.io/" />
+<meta property="og:site_name" content="Jubayer Portfolio" />
+<meta property="og:image" content="https://kejubayer.github.io/icons/social/website.png" />
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Khondoker Eftakhar Jubayer | Software Engineer" />
+<meta name="twitter:description" content="Backend-focused engineer building scalable ERP and SaaS products with Laravel and PHP." />
+<meta name="twitter:image" content="https://kejubayer.github.io/icons/social/website.png" />
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Khondoker Eftakhar Jubayer",
+  "url": "https://kejubayer.github.io/",
+  "jobTitle": "Software Engineer",
+  "description": "Backend-focused software engineer specializing in Laravel, ERP and SaaS platforms.",
+  "sameAs": [
+    "https://github.com/kejubayer",
+    "https://www.linkedin.com"
+  ],
+  "knowsAbout": [
+    "Laravel",
+    "PHP",
+    "ERP Systems",
+    "SaaS Architecture",
+    "REST APIs",
+    "MySQL"
+  ]
+}
+</script>
 
 <style>
-  :root{
-    --primary:#2563eb;
-    --bg:#f8fafc;
-    --card:#ffffff;
-    --text:#111827;
-    --muted:#6b7280;
+  :root {
+    --primary: #2563eb;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #111827;
+    --muted: #6b7280;
+    --heading: #0f172a;
   }
 
-  body{background:var(--bg);color:var(--text);}
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); }
 
-  .navbar{background:#fff;border-bottom:1px solid #e5e7eb;}
-
-  .hero{
-    padding:110px 0;
-    text-align:center;
-    background:linear-gradient(135deg,#e0f2fe,#fff);
+  .navbar {
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
   }
 
-  .accent{color:var(--primary);}
-
-  .section-title{
-    text-align:center;
-    margin-bottom:35px;
-    color:var(--primary);
-    font-weight:700;
+  .hero {
+    padding: 130px 0 100px;
+    text-align: center;
+    background: linear-gradient(135deg, #dbeafe, #ffffff);
   }
 
-  .card-light{
-    background:#fff;
-    border:1px solid #e5e7eb;
-    border-radius:12px;
-    padding:20px;
+  .hero p { max-width: 780px; margin: 0 auto; }
+
+  .accent { color: var(--primary); }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 35px;
+    color: var(--heading);
+    font-weight: 700;
   }
 
-  .badge-skill{
-    background:#eef2ff;
-    color:var(--primary);
-    padding:6px 10px;
-    border-radius:8px;
-    display:inline-block;
-    margin:3px;
+  .card-light {
+    background: var(--card);
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 4px 14px rgba(2, 6, 23, 0.04);
   }
 
-  .progress{height:10px;border-radius:10px;}
-
-  footer{
-    background:#fff;
-    border-top:1px solid #e5e7eb;
-    text-align:center;
-    padding:30px;
+  .badge-skill {
+    background: #eef2ff;
+    color: var(--primary);
+    padding: 6px 10px;
+    border-radius: 8px;
+    display: inline-block;
+    margin: 3px;
+    font-size: 0.9rem;
   }
 
-  /* typing */
-  .typing{
-    font-weight:600;
-    font-size:1.2rem;
-    color:#334155;
-    height:30px;
+  .progress { height: 10px; border-radius: 10px; }
+
+  .typing {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #334155;
+    height: 30px;
+  }
+
+  .metric-box {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1rem;
+    background: #fff;
+    text-align: center;
+  }
+
+  .repo-card {
+    height: 100%;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1rem;
+    background: #fff;
+  }
+
+  .repo-meta {
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+
+  footer {
+    background: #fff;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+    padding: 30px;
+    color: var(--muted);
   }
 </style>
 </head>
 
 <body>
-
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container">
     <a class="navbar-brand fw-bold" href="#">Jubayer</a>
+    <div class="d-flex gap-3">
+      <a class="text-decoration-none" href="#projects">Projects</a>
+      <a class="text-decoration-none" href="#github-packages">GitHub Packages</a>
+      <a class="text-decoration-none" href="#contact">Contact</a>
+    </div>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="container">
     <h1>Hi, I'm <span class="accent">Khondoker Eftakhar Jubayer</span></h1>
-
     <div class="typing" id="typing"></div>
-
-    <p class="mt-2 text-muted">Laravel | ERP | SaaS | Backend Engineer</p>
-
-    <a href="#contact" class="btn btn-primary mt-3">Contact Me</a>
-    <!-- <a href="#" class="btn btn-outline-primary mt-3 ms-2" onclick="downloadCV()">Download CV</a> -->
+    <p class="mt-3 text-muted">I design and build robust ERP and SaaS products using Laravel, PHP, and scalable API-first backend architecture. I focus on clean code, maintainability, and measurable business impact.</p>
+    <a href="#contact" class="btn btn-primary mt-4">Contact Me</a>
+    <a href="https://github.com/kejubayer" target="_blank" rel="noopener" class="btn btn-outline-primary mt-4 ms-2">View GitHub</a>
   </div>
 </section>
 
-<!-- ABOUT -->
 <section class="py-5">
   <div class="container">
     <h2 class="section-title">About</h2>
-    <p class="text-center">Backend-focused Software Engineer building scalable ERP & SaaS systems.</p>
+    <p class="text-center">Backend-focused Software Engineer with hands-on experience delivering enterprise-grade ERP modules, multi-tenant SaaS platforms, payment integrations, and secure REST APIs. I enjoy turning business requirements into reliable software with clear architecture and performance-conscious implementation.</p>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section class="py-5 bg-white">
+<section class="py-5 bg-white" id="projects">
   <div class="container">
-    <h2 class="section-title">Skills</h2>
-
-    <p>Laravel</p>
-    <div class="progress mb-2"><div class="progress-bar bg-primary" style="width:90%"></div></div>
-
-    <p>MySQL</p>
-    <div class="progress mb-2"><div class="progress-bar" style="width:85%"></div></div>
-
-    <p>PHP</p>
-    <div class="progress mb-2"><div class="progress-bar" style="width:92%"></div></div>
+    <h2 class="section-title">Skills & Expertise</h2>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <p class="mb-1">Laravel & Ecosystem</p>
+        <div class="progress mb-3"><div class="progress-bar bg-primary" style="width: 90%"></div></div>
+        <p class="mb-1">PHP Architecture</p>
+        <div class="progress mb-3"><div class="progress-bar bg-success" style="width: 92%"></div></div>
+        <p class="mb-1">MySQL Performance</p>
+        <div class="progress mb-3"><div class="progress-bar bg-info" style="width: 85%"></div></div>
+      </div>
+      <div class="col-md-6">
+        <div class="card-light h-100">
+          <span class="badge-skill">Laravel</span>
+          <span class="badge-skill">Livewire</span>
+          <span class="badge-skill">REST API</span>
+          <span class="badge-skill">MySQL</span>
+          <span class="badge-skill">System Design</span>
+          <span class="badge-skill">Linux Server</span>
+          <span class="badge-skill">CI/CD</span>
+          <span class="badge-skill">SaaS Development</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- GITHUB -->
-<section class="py-5">
-  <div class="container text-center">
-    <h2 class="section-title">GitHub Stats</h2>
+<section class="py-5" id="github-packages">
+  <div class="container">
+    <h2 class="section-title">GitHub Packages & Repository Details</h2>
+    <p class="text-center text-muted mb-4">Live data is loaded from GitHub API (user repositories and package-related metadata).</p>
 
-    <img src="https://github-readme-stats.vercel.app/api?username=kejubayer&show_icons=true" class="img-fluid mb-3"/>
+    <div class="row g-3 mb-4" id="githubMetrics">
+      <div class="col-md-3"><div class="metric-box"><div class="h4 mb-0" id="repoCount">-</div><small>Total Public Repos</small></div></div>
+      <div class="col-md-3"><div class="metric-box"><div class="h4 mb-0" id="starCount">-</div><small>Total Stars</small></div></div>
+      <div class="col-md-3"><div class="metric-box"><div class="h4 mb-0" id="forkCount">-</div><small>Total Forks</small></div></div>
+      <div class="col-md-3"><div class="metric-box"><div class="h4 mb-0" id="updatedAt">-</div><small>Last Repo Update</small></div></div>
+    </div>
 
-    <img src="https://github-readme-activity-graph.vercel.app/graph?username=kejubayer" class="img-fluid"/>
+    <div id="repoList" class="row g-4"></div>
+    <div id="repoError" class="alert alert-warning d-none mt-3"></div>
   </div>
 </section>
 
-<!-- HOBBIES -->
 <section class="py-5 bg-white">
-  <div class="container text-center">
-    <h2 class="section-title">Hobbies</h2>
-    <span class="badge-skill">Coding</span>
-    <span class="badge-skill">Open Source</span>
-    <span class="badge-skill">System Design</span>
-    <span class="badge-skill">Tech Learning</span>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section class="py-5">
   <div class="container">
     <h2 class="section-title">Experience</h2>
+    <div class="card-light mb-3">
+      <h5 class="mb-1">Senior Web Developer - STIT BD</h5>
+      <p class="text-muted mb-0">Built ERP modules for inventory, accounting, HR, and reporting with role-based access and secure workflow automation.</p>
+    </div>
     <div class="card-light">
-      <p><b>STIT BD</b> - Senior Web Developer (ERP Systems)</p>
-      <p><b>Kodeeo</b> - Software Engineer (Laravel / API)</p>
+      <h5 class="mb-1">Software Engineer - Kodeeo</h5>
+      <p class="text-muted mb-0">Developed Laravel APIs and backend services for client products with focus on scalability, testing, and delivery speed.</p>
     </div>
   </div>
 </section>
 
-<!-- ADMIN + SEO -->
-<section class="py-5 bg-white">
-  <div class="container">
-    <h2 class="section-title">Advanced Features</h2>
-
-    <div class="card-light">
-      <p>🎯 Laravel Admin Panel (CMS-ready portfolio system)</p>
-      <p>🌍 SEO optimized structure (meta + OG + schema ready)</p>
-      <p>⚡ Dynamic content support via API or DB</p>
-      <p>🚀 Deploy ready for GitHub Pages / VPS / custom domain</p>
-    </div>
-  </div>
-</section>
-
-<!-- GIT PACKAGES -->
-<section class="py-5">
-  <div class="container">
-    <h2 class="section-title">Laravel Packages Used (Recommended)</h2>
-    <div class="card-light">
-      <p>✔ laravel/framework</p>
-      <p>✔ livewire/livewire</p>
-      <p>✔ guzzlehttp/guzzle</p>
-      <p>✔ laravel/sanctum</p>
-      <p>✔ barryvdh/laravel-dompdf</p>
-      <p>✔ maatwebsite/excel</p>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
 <section class="py-5 bg-light" id="contact">
   <div class="container text-center">
     <h2 class="section-title">Contact</h2>
-    <p>Email: khondokereftakharjubayer@gmail.com</p>
+    <p class="mb-1">Email: <a href="mailto:khondokereftakharjubayer@gmail.com">khondokereftakharjubayer@gmail.com</a></p>
+    <p class="text-muted">Open to remote and on-site software engineering opportunities.</p>
   </div>
 </section>
 
 <footer>
-  © 2026 Jubayer
+  © 2026 Jubayer | Built with HTML, Bootstrap & GitHub API
 </footer>
 
 <script>
-// typing animation
-const texts=["Laravel Developer","ERP Builder","SaaS Engineer","Backend Architect"];
-let i=0,j=0,current="",isDeleting=false;
+const texts = ["Laravel Developer", "ERP Builder", "SaaS Engineer", "Backend Architect"];
+let i = 0, j = 0, current = "", isDeleting = false;
 
-function type(){
-  current=texts[i];
-  let display=current.substring(0,j);
+function type() {
+  current = texts[i];
+  let display = current.substring(0, j);
+  document.getElementById("typing").innerHTML = display;
 
-  document.getElementById("typing").innerHTML=display;
+  if (!isDeleting && j < current.length) j++;
+  else if (isDeleting && j > 0) j--;
 
-  if(!isDeleting && j<current.length){j++;}
-  else if(isDeleting && j>0){j--;}
+  if (j === current.length) isDeleting = true;
+  if (j === 0) { isDeleting = false; i = (i + 1) % texts.length; }
 
-  if(j===current.length) isDeleting=true;
-  if(j===0){isDeleting=false;i=(i+1)%texts.length;}
-
-  setTimeout(type,120);
+  setTimeout(type, 120);
 }
+
+async function loadGithubRepos() {
+  const username = "kejubayer";
+  const repoList = document.getElementById("repoList");
+  const repoError = document.getElementById("repoError");
+
+  try {
+    const response = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`);
+    if (!response.ok) throw new Error("Failed to load GitHub repositories.");
+
+    const repos = await response.json();
+    const publicRepos = repos.filter(repo => !repo.fork);
+
+    const stars = publicRepos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+    const forks = publicRepos.reduce((sum, repo) => sum + repo.forks_count, 0);
+    const lastUpdated = publicRepos[0]?.updated_at ? new Date(publicRepos[0].updated_at).toLocaleDateString() : "N/A";
+
+    document.getElementById("repoCount").textContent = publicRepos.length;
+    document.getElementById("starCount").textContent = stars;
+    document.getElementById("forkCount").textContent = forks;
+    document.getElementById("updatedAt").textContent = lastUpdated;
+
+    repoList.innerHTML = publicRepos.slice(0, 8).map(repo => `
+      <div class="col-md-6 col-lg-4">
+        <article class="repo-card">
+          <h3 class="h6 mb-2">
+            <a href="${repo.html_url}" target="_blank" rel="noopener">${repo.name}</a>
+          </h3>
+          <p class="repo-meta mb-2">${repo.description ? repo.description : "No description provided yet."}</p>
+          <div class="d-flex flex-wrap gap-2 mb-2">
+            <span class="badge text-bg-light"><i class="bi bi-star"></i> ${repo.stargazers_count}</span>
+            <span class="badge text-bg-light"><i class="bi bi-diagram-3"></i> ${repo.forks_count}</span>
+            <span class="badge text-bg-light"><i class="bi bi-code-slash"></i> ${repo.language || "N/A"}</span>
+          </div>
+          <p class="repo-meta mb-0">Updated: ${new Date(repo.updated_at).toLocaleDateString()}</p>
+          <p class="repo-meta mb-0">Packages/Topics: ${repo.topics && repo.topics.length ? repo.topics.join(", ") : "Not specified"}</p>
+        </article>
+      </div>
+    `).join("");
+  } catch (error) {
+    repoError.classList.remove("d-none");
+    repoError.textContent = "Could not fetch GitHub repositories right now. Please try again later.";
+  }
+}
+
 type();
-
-// CV download
-downloadCV=()=>{
-  const link=document.createElement('a');
-  link.href='cv.pdf';
-  link.download='Jubayer_CV.pdf';
-  link.click();
-}
+loadGithubRepos();
 </script>
-
 </body>
 </html>
