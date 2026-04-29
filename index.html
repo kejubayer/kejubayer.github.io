@@ -420,12 +420,17 @@
             throw new Error("Failed to load GitHub repositories.");
 
           const repos = await response.json();
-          const publicRepos = repos.filter((repo) => !repo.fork);
+          const excludedRepos = ["kejubayer.github.io", "kejubayer"];
+
+          const publicRepos = repos.filter(
+            (repo) => !repo.fork && !excludedRepos.includes(repo.name),
+          );
 
           const stars = publicRepos.reduce(
             (sum, repo) => sum + repo.stargazers_count,
             0,
           );
+
           const forks = publicRepos.reduce(
             (sum, repo) => sum + repo.forks_count,
             0,
