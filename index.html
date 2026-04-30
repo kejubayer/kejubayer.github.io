@@ -593,7 +593,7 @@
                 >
               </p>
               <p class="mb-3">
-                Phone: <a href="tel:+8801700000000">+880 1700-000000</a>
+                Phone: <a href="tel:+8801710029052">+8801710029052</a>, <a href="tel:+8801609550979">+8801609550979</a>
               </p>
               <p class="text-muted mb-0">
                 I enjoy collaborating on meaningful products that solve real
@@ -786,11 +786,11 @@
         if (!wrap) return;
         const images = await getGalleryImages();
         wrap.innerHTML = images
-          .slice(0, 6)
+          .slice(0, 4)
           .map((src, index) => {
             const altText = `Khondoker Eftakhar Jubayer gallery photo ${index + 1}`;
             return `
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <figure class="gallery-preview-card mb-0">
                   <img src="${src}" class="gallery-preview-img" alt="${altText}" title="${altText}" loading="lazy" data-zoom-src="${src}" data-zoom-alt="${altText}" />
                 </figure>
