@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery | Khondoker Eftakhar Jubayer</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body { background: #f8fafc; }
+      .gallery-card {
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+      }
+      .gallery-img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        cursor: zoom-in;
+        transition: transform 0.25s ease;
+      }
+      .gallery-img:hover { transform: scale(1.03); }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html#home">← Back Home</a>
+      </div>
+    </nav>
+
+    <main class="py-5">
+      <div class="container">
+        <h1 class="h3 text-center mb-4">All Gallery Photos</h1>
+        <div id="galleryGrid" class="row g-4"></div>
+        <p id="galleryFallback" class="text-center text-muted mt-3 d-none">No gallery images found.</p>
+      </div>
+    </main>
+
+    <div class="modal fade" id="zoomModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content bg-dark">
+          <div class="modal-body p-0">
+            <img id="zoomImage" src="" alt="Zoomed gallery image" class="img-fluid w-100" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      async function getGalleryImages() {
+        try {
+          const response = await fetch("photos/gallery/");
+          if (!response.ok) throw new Error("Directory listing unavailable");
+          const html = await response.text();
+          const doc = new DOMParser().parseFromString(html, "text/html");
+          const links = [...doc.querySelectorAll('a[href]')]
+            .map((a) => a.getAttribute("href"))
+            .filter((href) => /\.(jpg|jpeg|png|webp|gif)$/i.test(href || ""))
+            .map((href) => `photos/gallery/${decodeURIComponent(href).replace(/^\.?\//, "")}`);
+
+          const unique = [...new Set(links)];
+          if (unique.length) return unique;
+        } catch (error) {}
+
+        const fallbacks = [];
+        for (let i = 1; i <= 120; i++) {
+          fallbacks.push(`photos/gallery/${i}.jpg`);
+        }
+
+        const checks = await Promise.all(
+          fallbacks.map(async (src) => {
+            try {
+              const resp = await fetch(src, { method: "HEAD" });
+              return resp.ok ? src : null;
+            } catch {
+              return null;
+            }
+          }),
+        );
+
+        return checks.filter(Boolean);
+      }
+
+      function openZoom(src) {
+        document.getElementById("zoomImage").src = src;
+        bootstrap.Modal.getOrCreateInstance(document.getElementById("zoomModal")).show();
+      }
+
+      async function renderGallery() {
+        const grid = document.getElementById("galleryGrid");
+        const fallbackText = document.getElementById("galleryFallback");
+        const images = await getGalleryImages();
+
+        if (!images.length) {
+          fallbackText.classList.remove("d-none");
+          return;
+        }
+
+        grid.innerHTML = images
+          .map(
+            (src) => `
+              <div class="col-sm-6 col-lg-4">
+                <div class="gallery-card">
+                  <img src="${src}" class="gallery-img" alt="Gallery photo" loading="lazy" onclick="openZoom('${src}')" />
+                </div>
+              </div>
+            `,
+          )
+          .join("");
+      }
+
+      renderGallery();
+    </script>
+  </body>
+</html>
