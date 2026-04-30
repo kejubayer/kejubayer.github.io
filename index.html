@@ -22,7 +22,11 @@
     <meta name="theme-color" content="#2563eb" />
     <link rel="canonical" href="https://kejubayer.github.io/" />
     <link rel="alternate" hreflang="en" href="https://kejubayer.github.io/" />
-    <link rel="alternate" hreflang="x-default" href="https://kejubayer.github.io/" />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://kejubayer.github.io/"
+    />
 
     <!-- Open Graph -->
     <meta property="og:locale" content="en_US" />
@@ -340,14 +344,19 @@
     </style>
   </head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BKJV5V3JX4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-BKJV5V3JX4"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-  gtag('config', 'G-BKJV5V3JX4');
-</script>
+    gtag("config", "G-BKJV5V3JX4");
+  </script>
 
   <body>
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -776,6 +785,35 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/gallery.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $.get("https://ip-api.com/json", function (data) {
+          $.ajax({
+            url: "https://script.google.com/macros/s/AKfycbwascqMAw_4TU-KQETt6NrNvhXdzCnKWAfmDDlY3L5l/exec",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({
+              ip: data.query,
+              city: data.city,
+              country: data.country,
+              timezone: data.timezone,
+            }),
+            success: function (res) {
+              console.log("Saved to Google Sheet:", res);
+            },
+            error: function (err) {
+              console.error("Save failed:", err);
+            },
+          });
+        }).fail(function (err) {
+          console.error("IP API failed:", err);
+        });
+      });
+    </script>
+
     <script>
       const texts = [
         "Laravel Developer",
