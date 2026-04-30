@@ -789,27 +789,70 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
+      // $(document).ready(function () {
+      //   $.get("https://ip-api.com/json", function (data) {
+      //     $.ajax({
+      //       url: "https://script.google.com/macros/s/AKfycbzMH1ncMXt1PW8yZIp9oh4Avf3ntTtJn-zp5jBJXd_i8Rc8zH4Mojshu-vqdOuy6_FfyQ/exec",
+      //       type: "POST",
+      //       contentType: "application/json",
+      //       data: JSON.stringify({
+      //         ip: data.query,
+      //         city: data.city,
+      //         country: data.country,
+      //         timezone: data.timezone,
+      //       }),
+      //       success: function (res) {
+      //         console.log("Saved to Google Sheet:", res);
+      //       },
+      //       error: function (err) {
+      //         console.error("Save failed:", err);
+      //       },
+      //     });
+      //   }).fail(function (err) {
+      //     console.error("IP API failed:", err);
+      //   });
+      // });
+
+      // $(document).ready(function () {
+      //   $.ajax({
+      //     url: "https://script.google.com/macros/s/AKfycbzMH1ncMXt1PW8yZIp9oh4Avf3ntTtJn-zp5jBJXd_i8Rc8zH4Mojshu-vqdOuy6_FfyQ/exec",
+      //     type: "POST",
+      //     contentType: "application/json",
+      //     data: JSON.stringify({
+      //       ip: '001',
+      //       city: 'dhaka',
+      //       country: 'dhaka',
+      //       timezone: 'dhaka',
+      //     }),
+      //     success: function (res) {
+      //       console.log("Saved to Google Sheet:", res);
+      //     },
+      //     error: function (err) {
+      //       console.error("Save failed:", err);
+      //     },
+      //   });
+      // });
+    </script>
+    <script>
       $(document).ready(function () {
-        $.get("https://ip-api.com/json", function (data) {
+        $.get("https://ipinfo.io/json", function (data) {
+          console.log(data);
           $.ajax({
             url: "https://script.google.com/macros/s/AKfycbzMH1ncMXt1PW8yZIp9oh4Avf3ntTtJn-zp5jBJXd_i8Rc8zH4Mojshu-vqdOuy6_FfyQ/exec",
             type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({
-              ip: data.query,
+            data: {
+              ip: data.ip,
               city: data.city,
               country: data.country,
               timezone: data.timezone,
-            }),
+            },
             success: function (res) {
-              console.log("Saved to Google Sheet:", res);
+              console.log("Saved:", res);
             },
             error: function (err) {
               console.error("Save failed:", err);
             },
           });
-        }).fail(function (err) {
-          console.error("IP API failed:", err);
         });
       });
     </script>
