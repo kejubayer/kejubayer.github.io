@@ -53,40 +53,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/gallery.js"></script>
     <script>
-      async function getGalleryImages() {
-        try {
-          const response = await fetch("photos/gallery/");
-          if (!response.ok) throw new Error("Directory listing unavailable");
-          const html = await response.text();
-          const doc = new DOMParser().parseFromString(html, "text/html");
-          const links = [...doc.querySelectorAll('a[href]')]
-            .map((a) => a.getAttribute("href"))
-            .filter((href) => /\.(jpg|jpeg|png|webp|gif)$/i.test(href || ""))
-            .map((href) => `photos/gallery/${decodeURIComponent(href).replace(/^\.?\//, "")}`);
-
-          const unique = [...new Set(links)];
-          if (unique.length) return unique;
-        } catch (error) {}
-
-        const fallbacks = [];
-        for (let i = 1; i <= 120; i++) {
-          fallbacks.push(`photos/gallery/${i}.jpg`);
-        }
-
-        const checks = await Promise.all(
-          fallbacks.map(async (src) => {
-            try {
-              const resp = await fetch(src, { method: "HEAD" });
-              return resp.ok ? src : null;
-            } catch {
-              return null;
-            }
-          }),
-        );
-
-        return checks.filter(Boolean);
-      }
 
       function openZoom(src) {
         document.getElementById("zoomImage").src = src;
