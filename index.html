@@ -274,8 +274,8 @@
             <li class="nav-item">
               <a class="nav-link" href="#github-packages">GitHub Packages</a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#social-links">Social</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="#smart-gallery">Gallery</a></li>
+            <li class="nav-item"><a class="nav-link" href="#connect">Connect</a></li>
           </ul>
         </div>
       </div>
@@ -291,7 +291,7 @@
           applications. I write clean, maintainable code and design efficient
           architectures to solve real-world business problems.
         </p>
-        <a href="#contact" class="btn btn-primary mt-4">Contact Me</a>
+        <a href="#connect" class="btn btn-primary mt-4">Contact Me</a>
         <a
           href="https://github.com/kejubayer"
           target="_blank"
@@ -299,6 +299,19 @@
           class="btn btn-outline-primary mt-4 ms-2"
           >View GitHub</a
         >
+      </div>
+    </section>
+
+    <section class="py-5 bg-white" id="smart-gallery">
+      <div class="container">
+        <h2 class="section-title">Smart Gallery</h2>
+        <p class="text-center text-muted mb-4">
+          Latest photos from <code>photos/gallery</code>.
+        </p>
+        <div class="row g-4" id="homeGalleryPreview"></div>
+        <div class="text-center mt-4">
+          <a href="gallery.html" class="btn btn-primary">See More</a>
+        </div>
       </div>
     </section>
 
@@ -460,39 +473,42 @@
       </div>
     </section>
 
-    <section class="py-5" id="social-links">
-      <div class="container text-center">
-        <h2 class="section-title">Social Media Links</h2>
-        <p class="text-muted mb-4">Connect with me on social platforms.</p>
-        <div class="d-flex justify-content-center flex-wrap gap-3">
-          <a class="btn btn-outline-dark" href="https://github.com/kejubayer" target="_blank" rel="noopener">
-            <i class="bi bi-github me-1"></i>GitHub
-          </a>
-          <a class="btn btn-outline-primary" href="https://www.linkedin.com/in/kejubayer/" target="_blank" rel="noopener">
-            <i class="bi bi-linkedin me-1"></i>LinkedIn
-          </a>
-          <a class="btn btn-outline-info" href="https://x.com/kejubayer" target="_blank" rel="noopener">
-            <i class="bi bi-twitter-x me-1"></i>X (Twitter)
-          </a>
-          <a class="btn btn-outline-danger" href="https://www.facebook.com/engr.k.e.jubayer" target="_blank" rel="noopener">
-            <i class="bi bi-facebook me-1"></i>Facebook
-          </a>
+    <section class="py-5 bg-light" id="connect">
+      <div class="container">
+        <h2 class="section-title">Social & Contact</h2>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="card-light h-100 text-center">
+              <h3 class="h5 mb-3">Social Media Links</h3>
+              <div class="d-flex justify-content-center flex-wrap gap-3">
+                <a class="btn btn-outline-dark" href="https://github.com/kejubayer" target="_blank" rel="noopener">
+                  <i class="bi bi-github me-1"></i>GitHub
+                </a>
+                <a class="btn btn-outline-primary" href="https://www.linkedin.com/in/kejubayer/" target="_blank" rel="noopener">
+                  <i class="bi bi-linkedin me-1"></i>LinkedIn
+                </a>
+                <a class="btn btn-outline-info" href="https://x.com/kejubayer" target="_blank" rel="noopener">
+                  <i class="bi bi-twitter-x me-1"></i>X (Twitter)
+                </a>
+                <a class="btn btn-outline-danger" href="https://www.facebook.com/engr.k.e.jubayer" target="_blank" rel="noopener">
+                  <i class="bi bi-facebook me-1"></i>Facebook
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card-light h-100 text-center">
+              <h3 class="h5 mb-3">Contact</h3>
+              <p class="mb-1">
+                Email:
+                <a href="mailto:khondokereftakharjubayer@gmail.com">khondokereftakharjubayer@gmail.com</a>
+              </p>
+              <p class="text-muted mb-0">
+                Open to remote and on-site software engineering opportunities.
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <section class="py-5 bg-light" id="contact">
-      <div class="container text-center">
-        <h2 class="section-title">Contact</h2>
-        <p class="mb-1">
-          Email:
-          <a href="mailto:khondokereftakharjubayer@gmail.com"
-            >khondokereftakharjubayer@gmail.com</a
-          >
-        </p>
-        <p class="text-muted">
-          Open to remote and on-site software engineering opportunities.
-        </p>
       </div>
     </section>
 
@@ -633,9 +649,56 @@
         }
       }
 
+      async function getGalleryImages() {
+        try {
+          const response = await fetch("photos/gallery/");
+          if (!response.ok) throw new Error("Directory listing unavailable");
+          const html = await response.text();
+          const doc = new DOMParser().parseFromString(html, "text/html");
+          const links = [...doc.querySelectorAll("a[href]")]
+            .map((a) => a.getAttribute("href"))
+            .filter((href) => /\.(jpg|jpeg|png|webp|gif)$/i.test(href || ""))
+            .map((href) => `photos/gallery/${decodeURIComponent(href).replace(/^\.?\//, "")}`);
+          const unique = [...new Set(links)];
+          if (unique.length) return unique;
+        } catch (error) {}
+
+        const fallbacks = [];
+        for (let i = 1; i <= 120; i++) fallbacks.push(`photos/gallery/${i}.jpg`);
+
+        const checks = await Promise.all(
+          fallbacks.map(async (src) => {
+            try {
+              const resp = await fetch(src, { method: "HEAD" });
+              return resp.ok ? src : null;
+            } catch {
+              return null;
+            }
+          }),
+        );
+        return checks.filter(Boolean);
+      }
+
+      async function renderHomeGalleryPreview() {
+        const wrap = document.getElementById("homeGalleryPreview");
+        if (!wrap) return;
+        const images = await getGalleryImages();
+        wrap.innerHTML = images
+          .slice(0, 3)
+          .map(
+            (src) => `
+              <div class="col-md-4">
+                <img src="${src}" class="img-fluid rounded-4 shadow-sm w-100" alt="Gallery preview image" style="aspect-ratio:4/3;object-fit:cover;" loading="lazy" />
+              </div>
+            `,
+          )
+          .join("");
+      }
+
       type();
       loadGithubRepos();
       initSmartNav();
+      renderHomeGalleryPreview();
     </script>
   </body>
 </html>
