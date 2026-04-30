@@ -240,6 +240,43 @@
         color: var(--muted);
       }
 
+      .gallery-preview-card {
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+        overflow: hidden;
+      }
+
+      .gallery-preview-img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        cursor: zoom-in;
+        transition: transform 0.28s ease;
+      }
+
+      .gallery-preview-card:hover .gallery-preview-img {
+        transform: scale(1.04);
+      }
+
+      .btn-see-more {
+        border: none;
+        border-radius: 999px;
+        padding: 0.8rem 1.5rem;
+        font-weight: 600;
+        color: #fff;
+        background: linear-gradient(135deg, #2563eb, #0ea5e9);
+        box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
+        transition: all 0.25s ease;
+      }
+
+      .btn-see-more:hover {
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 14px 28px rgba(37, 99, 235, 0.42);
+      }
+
       footer {
         background: #fff;
         border-top: 1px solid #e5e7eb;
@@ -402,11 +439,14 @@
       <div class="container">
         <h2 class="section-title">Gallery</h2>
         <p class="text-center text-muted mb-4">
-          Photos of <code>Khondoker Eftakhar Jubayer</code>.
+          Click any photo to zoom. Optimized image alt text helps search engines
+          discover every gallery image.
         </p>
         <div class="row g-4" id="homeGalleryPreview"></div>
         <div class="text-center mt-4">
-          <a href="gallery.html" class="btn btn-primary">See More</a>
+          <a href="gallery.html" class="btn btn-see-more">
+            See More Photos <i class="bi bi-arrow-right-circle ms-1"></i>
+          </a>
         </div>
       </div>
     </section>
@@ -549,6 +589,38 @@
     </section>
 
     <footer>© 2026 Jubayer | Built with HTML, Bootstrap & GitHub API</footer>
+
+    <div
+      class="modal fade"
+      id="homeZoomModal"
+      tabindex="-1"
+      aria-labelledby="homeZoomLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content bg-dark">
+          <div class="modal-header border-0 pb-0">
+            <h2 class="h6 text-white mb-0" id="homeZoomLabel">
+              Gallery image preview
+            </h2>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close image preview"
+            ></button>
+          </div>
+          <div class="modal-body pt-2">
+            <img
+              id="homeZoomImage"
+              src=""
+              alt="Zoomed gallery image of Khondoker Eftakhar Jubayer"
+              class="img-fluid w-100 rounded-3"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/gallery.js"></script>
@@ -696,14 +768,29 @@
         const images = await getGalleryImages();
         wrap.innerHTML = images
           .slice(0, 6)
-          .map(
-            (src) => `
+          .map((src, index) => {
+            const altText = `Khondoker Eftakhar Jubayer gallery photo ${index + 1}`;
+            return `
               <div class="col-md-4">
-                <img src="${src}" class="img-fluid rounded-4 shadow-sm w-100" alt="Khondoker Eftakhar Jubayer" style="aspect-ratio:4/3;object-fit:cover;" loading="lazy" />
+                <figure class="gallery-preview-card mb-0">
+                  <img src="${src}" class="gallery-preview-img" alt="${altText}" title="${altText}" loading="lazy" data-zoom-src="${src}" data-zoom-alt="${altText}" />
+                </figure>
               </div>
-            `,
-          )
+            `;
+          })
           .join("");
+
+        wrap.querySelectorAll("[data-zoom-src]").forEach((img) => {
+          img.addEventListener("click", () => {
+            document.getElementById("homeZoomImage").src =
+              img.getAttribute("data-zoom-src");
+            document.getElementById("homeZoomImage").alt =
+              `Zoomed ${img.getAttribute("data-zoom-alt")}`;
+            bootstrap.Modal.getOrCreateInstance(
+              document.getElementById("homeZoomModal"),
+            ).show();
+          });
+        });
       }
 
       type();
