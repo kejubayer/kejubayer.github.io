@@ -25,6 +25,11 @@
         transition: transform 0.25s ease;
       }
       .gallery-img:hover { transform: scale(1.03); }
+      .gallery-caption {
+        font-size: 0.82rem;
+        color: #64748b;
+        padding: 0.65rem 0.8rem 0.8rem;
+      }
     </style>
   </head>
   <body>
@@ -56,8 +61,9 @@
     <script src="js/gallery.js"></script>
     <script>
 
-      function openZoom(src) {
+      function openZoom(src, altText) {
         document.getElementById("zoomImage").src = src;
+        document.getElementById("zoomImage").alt = `Zoomed ${altText}`;
         bootstrap.Modal.getOrCreateInstance(document.getElementById("zoomModal")).show();
       }
 
@@ -72,15 +78,18 @@
         }
 
         grid.innerHTML = images
-          .map(
-            (src) => `
+          .map((src, index) => {
+            const fileName = src.split("/").pop().replace(/\.[^/.]+$/, "");
+            const altText = `Khondoker Eftakhar Jubayer gallery image ${index + 1} ${fileName}`;
+            return `
               <div class="col-sm-6 col-lg-4">
-                <div class="gallery-card">
-                  <img src="${src}" class="gallery-img" alt="Gallery photo" loading="lazy" onclick="openZoom('${src}')" />
-                </div>
+                <figure class="gallery-card mb-0">
+                  <img src="${src}" class="gallery-img" alt="${altText}" title="${altText}" loading="lazy" onclick="openZoom('${src}', '${altText}')" />
+                  <figcaption class="gallery-caption">${altText}</figcaption>
+                </figure>
               </div>
-            `,
-          )
+            `;
+          })
           .join("");
       }
 
