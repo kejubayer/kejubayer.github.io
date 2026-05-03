@@ -329,6 +329,53 @@
         color: #0f172a;
       }
 
+      .primary-email-card {
+        background: linear-gradient(135deg, #eff6ff 0%, #f8fafc 100%);
+        border: 1px solid #bfdbfe;
+        border-radius: 16px;
+        padding: 1rem;
+        text-align: left;
+      }
+
+      .primary-email-head {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        margin-bottom: 0.65rem;
+      }
+
+      .primary-email-icon {
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        background: #2563eb;
+        color: #fff;
+        box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
+      }
+
+      .primary-email-title {
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #64748b;
+      }
+
+      .primary-email-card .email-address {
+        font-size: 0.98rem;
+        font-weight: 700;
+        color: #0f172a;
+        text-decoration: none;
+        word-break: break-all;
+      }
+
+      .primary-email-note {
+        margin-top: 0.5rem;
+        font-size: 0.86rem;
+        color: #475569;
+      }
+
       @media (max-width: 575.98px) {
         .quick-contact {
           grid-template-columns: 1fr;
@@ -775,12 +822,23 @@
                   <i class="bi bi-facebook me-1"></i>Facebook
                 </a>
               </div>
-              <div class="quick-contact mb-4">
-                <div class="quick-contact-item">
-                  <div class="label">Primary Email</div>
-                  <a href="mailto:khondokereftakharjubayer@gmail.com"
+              <div class="mb-4">
+                <div class="primary-email-card">
+                  <div class="primary-email-head">
+                    <div class="primary-email-icon">
+                      <i class="bi bi-envelope-paper-fill"></i>
+                    </div>
+                    <div class="primary-email-title">Primary Email</div>
+                  </div>
+                  <a
+                    class="email-address"
+                    href="mailto:khondokereftakharjubayer@gmail.com"
                     >khondokereftakharjubayer@gmail.com</a
                   >
+                  <div class="primary-email-note">
+                    Best way to reach me for project discussions and
+                    opportunities.
+                  </div>
                 </div>
               </div>
               <div class="quick-contact mb-4">
