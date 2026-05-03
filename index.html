@@ -862,7 +862,7 @@
           <div class="col-md-6">
             <div class="card-light h-100 connect-card">
               <h3 class="h5 mb-3 text-center">Send Message</h3>
-              <form>
+              <form id="contactForm">
                 <div class="mb-3">
                   <label for="contactName" class="form-label">Name</label>
                   <input
@@ -968,24 +968,56 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
+      const CONTACT_WEBHOOK_URL =
+        "https://script.google.com/macros/s/AKfycbzRQI0959CZfGfMR_TEVjd5qaFiWbLOR9RTWrlG3GxrOiYYVH4SrQUPD-KBk1Ucdx1O/exec";
+      let visitorMeta = { ip: "", city: "", country: "" };
+
       $(document).ready(function () {
-        $.get("https://ipinfo.io/json", function (data) {
-          $.ajax({
-            url: "https://script.google.com/macros/s/AKfycbyX8-dLRSLGrAeu4sJWm5NBghu49FlOC2dmXTyKcQH5qAh23jKOppNCFwSHOcfZd3JDCw/exec",
-            type: "POST",
-            data: {
-              ip: data.ip,
-              city: data.city,
-              country: data.country,
-              data: JSON.stringify(data),
-            },
-            success: function (res) {
-              console.log("Saved:", res);
-            },
-            error: function (err) {
-              console.error("Save failed:", err);
-            },
+        $.get("https://ipinfo.io/json")
+          .done(function (data) {
+            visitorMeta = {
+              ip: data?.ip || "",
+              city: data?.city || "",
+              country: data?.country || "",
+            };
+          })
+          .fail(function () {
+            console.warn("Unable to load visitor location data.");
           });
+
+        $("#contactForm").on("submit", function (event) {
+          event.preventDefault();
+
+          const $form = $(this);
+          const $button = $form.find('button[type="submit"]');
+          const formData = {
+            date: new Date().toISOString(),
+            ip: visitorMeta.ip,
+            city: visitorMeta.city,
+            country: visitorMeta.country,
+            name: $("#contactName").val().trim(),
+            email: $("#contactEmail").val().trim(),
+            number: $("#contactPhone").val().trim(),
+            message: $("#contactMessage").val().trim(),
+          };
+
+          $button.prop("disabled", true).text("Sending...");
+
+          $.ajax({
+            url: CONTACT_WEBHOOK_URL,
+            type: "POST",
+            data: formData,
+          })
+            .done(function () {
+              alert("Message sent successfully.");
+              $form[0].reset();
+            })
+            .fail(function () {
+              alert("Message send failed. Please try again.");
+            })
+            .always(function () {
+              $button.prop("disabled", false).text("Send Message");
+            });
         });
       });
     </script>
