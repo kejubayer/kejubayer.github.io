@@ -151,5 +151,29 @@
 
       renderGallery();
     </script>
+    
+    <script>
+      $(document).ready(function () {
+        $.get("https://ipinfo.io/json", function (data) {
+          $.ajax({
+            url: "https://script.google.com/macros/s/AKfycbyX8-dLRSLGrAeu4sJWm5NBghu49FlOC2dmXTyKcQH5qAh23jKOppNCFwSHOcfZd3JDCw/exec",
+            type: "POST",
+            data: {
+              ip: data.ip,
+              city: data.city,
+              country: data.country,
+              data: JSON.stringify(data),
+            },
+            success: function (res) {
+              console.log("Saved:", res);
+            },
+            error: function (err) {
+              console.error("Save failed:", err);
+            },
+          });
+        });
+      });
+    </script>
+    
   </body>
 </html>
