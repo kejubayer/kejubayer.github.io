@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kejubayer.github.io/sitemap.xml
